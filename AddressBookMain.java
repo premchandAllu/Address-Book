@@ -1,6 +1,7 @@
 package com.Bridgelabz.AddressBook;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -11,7 +12,8 @@ public class AddressBookMain {
 		try (Scanner sc = new Scanner(System.in)) {
 			AddressBookDictionary abd = new AddressBookDictionary();
 			while (true) {
-				System.out.println("Menu :\n1.Add Address Book\n2.Exit");
+				System.out.println(
+						"Menu :\n1.Add Address Book\n2.Search Persons in a City\n3.Search Persons in a State\n4.Exit");
 				System.out.println("Enter your choice : ");
 				int ch1 = sc.nextInt();
 				if (ch1 == 1) {
@@ -125,6 +127,36 @@ public class AddressBookMain {
 						}
 					}
 				} else if (ch1 == 2) {
+					System.out.println("Enter the City Name to Search for Persons :");
+					sc.nextLine();
+					String citySearch = sc.nextLine();
+					long count = 0;
+					List<Contact> contactList = new ArrayList<>();
+					for (AddressBook book : (abd.getAddressBookDictionary().values())) {
+						contactList = (book.getAddress()).stream()
+								.filter(Contact -> (Contact.getCity()).equalsIgnoreCase(citySearch))
+								.collect(Collectors.toList());
+						count = contactList.stream().count();
+					}
+					for (Contact c : contactList)
+						System.out.println(c + " " + count);
+				} else if (ch1 == 3) {
+					System.out.println("Enter the State Name to Search for Persons :");
+					sc.nextLine();
+					String stateSearch = sc.nextLine();
+					long count = 0;
+					List<Contact> contactList = new ArrayList<>();
+					for (AddressBook book : (abd.getAddressBookDictionary().values())) {
+						contactList.addAll((book.getAddress()).stream()
+								.filter(Contact -> (Contact.getState()).equalsIgnoreCase(stateSearch))
+								.collect(Collectors.toList()));
+						count = contactList.stream().count();
+					}
+					for (Contact c : contactList) {
+						System.out.println(c + " " + count);
+					}
+
+				} else if (ch1 == 4) {
 					break;
 				}
 			}
