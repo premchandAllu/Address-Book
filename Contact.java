@@ -12,7 +12,6 @@ public class Contact {
 	private long phone;
 	private String email;
 
-
 	public Contact(String firstName, String lastName, String address, String city, String state, int zip, long phone,
 			String email) {
 		super();
@@ -24,7 +23,7 @@ public class Contact {
 		this.zip = zip;
 		this.phone = phone;
 		this.email = email;
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getFirstName() {
@@ -91,4 +90,8 @@ public class Contact {
 		this.email = email;
 	}
 
+	public String toString() {
+		return firstName + " " + lastName + " " + address + " " + city + " " + state + " " + zip + " " + phone + " "
+				+ email;
+	}
 }

@@ -18,14 +18,14 @@ public class AddressBook {
 		address.add(cobj);
 	}
 
-	public ArrayList<Contact> updateByFirstName(String first) {
-		ArrayList<Contact> obj = new ArrayList<Contact>();
-		for (int i = 0; i < address.size(); i++) {
-			if (address.get(i).getFirstName().contains(first)) {
-				obj.add(address.get(i));
+	public Contact updateDetails(String firstName, String lastName) {
+		Contact contact = null;
+		for (Contact contactSearch : address)
+			if (contactSearch.getFirstName().equalsIgnoreCase(firstName)
+					&& contactSearch.getLastName().equalsIgnoreCase(lastName)) {
+				contact = contactSearch;
 			}
-		}
-		return obj;
+		return contact;
 	}
 
 	public boolean removeContact(String first) {
